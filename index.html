@@ -78,12 +78,16 @@
 
     function onSubmit(e) {
       e.preventDefault()
+      const coin = coins.find(coin => coin.name === guess)
+      if (!coin) {
+        console.log('invalid guess')
+        return
+      }
       guessNumber ++
       const guess = document.querySelector('#coins').value
       if (guess === answer.name) {
         gameOver()
       } else {
-        const coin = coins.find(coin => coin.name === guess)
         console.log(coin)
         wrong(coin)
         if (guessNumber >= 5) {
