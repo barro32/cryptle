@@ -62,16 +62,15 @@
     getTopCoins()
 
     function updateSuggestions() {
+      suggestions.innerHTML = ''
 
-      const options = coins.map(coin => {
+      coins.forEach(coin => {
         const option = document.createElement('option')
         option.value = coin.name
         option.innerText = `${coin.market_cap_rank} ${coin.name}`
-        return option
+        suggestions.appendChild(option)
       })
 
-      suggestions.innerHTML = ''
-      suggestions.appendChild(options)
     }
 
     const app = document.querySelector('#app')
