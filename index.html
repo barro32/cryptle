@@ -105,6 +105,7 @@
         coins = coins.filter(coin => coin.market_cap_rank > guess.market_cap_rank)
         arrow = "⬇️"
       }
+      updateSuggestions()
       const li = document.createElement('li')
       li.innerHTML = `<span>${guess.market_cap_rank}</span><span>${guess.name}</span><span>${guess.symbol.toUpperCase()}</span><span>$${guess.current_price}</span><span>$${guess.market_cap.toLocaleString()}</span><span>${arrow}</span>`
       li.className = 'wrong'
