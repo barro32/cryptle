@@ -94,20 +94,26 @@
   </script>
 
   <style>
+    body {
+      background-color: #333;
+      color: #eee;
+    }
     #app {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      width: 400px;
+      width: 800px;
       margin: auto;
       font-family: sans-serif;
       font-size: 1rem;
-      background-color: #333;
-      color: #eee;
     }
     input, button {
       font-size: 1rem;
       padding: 0.5rem;
+      border: 0.2rem solid #eee;
+      border-radius: 0.2rem;
+      background-color: #333;
+      color: #eee;
     }
     #guesses {
       display: flex;
@@ -124,9 +130,11 @@
     }
     .correct {
       border: 0.2rem solid green;
+      border-radius: 0.2rem;
     }
     .wrong {
       border: 0.2rem solid red;
+      border-radius: 0.2rem;
     }
   </style>
 
