@@ -76,7 +76,7 @@
       if (guess === answer.name) {
         gameOver()
       } else {
-        wrong(guess)
+        wrong(coins.find(coin => coin.name === guess))
         if (guessNumber >= 5) {
           gameOver()
         }
@@ -84,10 +84,16 @@
     }
 
     function wrong(guess) {
-      const coin = coins.find(coin => coin.name === guess)
+      let arrow = "!"
+      if (guess.market_cap_rank > answer.market_cap_rank) {
+        coins = coins.filter(coin => coin.market_cap_rank < guess.market_cap_rank)
+        arrow = "⬆️"
+      } else {
+        coins = coins.filter(coin => coin.market_cap_rank > guess.market_cap_rank)
+        arrow = "⬇️"
+      }
       const li = document.createElement('li')
-      const arrow = coin.market_cap_rank > answer.market_cap_rank ? "⬆️" : "⬇️";
-      li.innerHTML = `<span>${coin.market_cap_rank}</span><span>${coin.name}</span><span>${coin.symbol.toUpperCase()}</span><span>$${coin.current_price}</span><span>$${coin.market_cap.toLocaleString()}</span><span>${arrow}</span>`
+      li.innerHTML = `<span>${guess.market_cap_rank}</span><span>${guess.name}</span><span>${guess.symbol.toUpperCase()}</span><span>$${guess.current_price}</span><span>$${guess.market_cap.toLocaleString()}</span><span>${arrow}</span>`
       li.className = 'wrong'
       guesses.appendChild(li)
     }
@@ -141,6 +147,8 @@
       gap: 1rem;
       justify-content: space-between;
       padding: 0.5rem;
+      border: 0.2rem solid #eee;
+      border-radius: 0.2rem;
     }
     .correct {
       border: 0.2rem solid green;
