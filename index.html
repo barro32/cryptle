@@ -86,7 +86,7 @@
     function wrong(guess) {
       const coin = coins.find(coin => coin.name === guess)
       const li = document.createElement('li')
-      const arrow = coin.market_cap_rank > answer.market_cap_rank ? "⬇️" : "⬆️";
+      const arrow = coin.market_cap_rank > answer.market_cap_rank ? "⬆️" : "⬇️";
       li.innerHTML = `<span>${coin.market_cap_rank}</span><span>${coin.name}</span><span>${coin.symbol.toUpperCase()}</span><span>$${coin.current_price}</span><span>$${coin.market_cap.toLocaleString()}</span><span>${arrow}</span>`
       li.className = 'wrong'
       guesses.appendChild(li)
