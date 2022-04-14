@@ -70,7 +70,8 @@
         return option
       })
 
-      suggestions.innerHTML = options
+      suggestions.innerHTML = ''
+      suggestions.appendChild(options)
     }
 
     const app = document.querySelector('#app')
