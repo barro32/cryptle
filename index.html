@@ -34,12 +34,18 @@
         <span>⬆️/⬇️</span>
       </li>
     </ol>
-    <input id="coins" list="suggestions">
-    <datalist id="suggestions"></datalist>
-    <button type="submit">Guess</button>
+    <div id="inputs">
+      <input id="coins" list="suggestions">
+      <datalist id="suggestions"></datalist>
+      <button type="submit">Guess</button>
+    </div>
+    <div id="game-over" class="hidden">
+      Game Over
+    </div>
   </form>
 
   <script>
+    let guessNumber = 0;
     const suggestions = document.querySelector('#suggestions')
     const guesses = document.querySelector('#guesses')
 
@@ -49,7 +55,7 @@
 
       coins.forEach(coin => {
         const option = document.createElement('option')
-        option.value = coin.symbol
+        option.value = coin.name
         option.innerText = coin.name
         suggestions.appendChild(option)
       })
@@ -65,20 +71,16 @@
 
     function onSubmit(e) {
       e.preventDefault()
+      guessNumber ++
       const guess = document.querySelector('#coins').value
       if (guess === answer.symbol) {
-        correct(guess)
+        gameOver()
       } else {
         wrong(guess)
+        if (guessNumber >= 5) {
+          gameOver()
+        }
       }
-    }
-
-    function correct(guess) {
-      const coin = coins.find(coin => coin.symbol === guess)
-      const li = document.createElement('li')
-      li.innerHTML = `<span>${coin.market_cap_rank}</span><span>${coin.name}</span><span>${coin.symbol.toUpperCase()}</span><span>$${coin.current_price}</span><span>$${coin.market_cap.toLocaleString()}</span><span>🎉</span>`
-      li.className = 'correct'
-      guesses.appendChild(li)
     }
 
     function wrong(guess) {
@@ -88,6 +90,18 @@
       li.innerHTML = `<span>${coin.market_cap_rank}</span><span>${coin.name}</span><span>${coin.symbol.toUpperCase()}</span><span>$${coin.current_price}</span><span>$${coin.market_cap.toLocaleString()}</span><span>${arrow}</span>`
       li.className = 'wrong'
       guesses.appendChild(li)
+    }
+
+    function gameOver() {
+      const li = document.createElement('li')
+      li.innerHTML = `<span>${answer.market_cap_rank}</span><span>${answer.name}</span><span>${answer.symbol.toUpperCase()}</span><span>$${answer.current_price}</span><span>$${answer.market_cap.toLocaleString()}</span><span></span>`
+      li.className = 'correct'
+      guesses.appendChild(li)
+
+      const inputs = document.querySelector('#inputs')
+      inputs.classList.add('hidden')
+      const gameOverMsg = document.querySelector('#game-over')
+      gameOverMsg.classList.remove('hidden')
     }
 
 
@@ -102,7 +116,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      width: 800px;
+      max-width: 800px;
       margin: auto;
       font-family: sans-serif;
       font-size: 1rem;
@@ -135,6 +149,9 @@
     .wrong {
       border: 0.2rem solid red;
       border-radius: 0.2rem;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 
