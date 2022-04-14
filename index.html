@@ -66,7 +66,7 @@
       const options = coins.map(coin => {
         const option = document.createElement('option')
         option.value = coin.name
-        option.innerText = coin.name
+        option.innerText = `${coin.market_cap_rank} ${coin.name}`
         return option
       })
 
