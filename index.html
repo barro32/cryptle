@@ -83,7 +83,9 @@
       if (guess === answer.name) {
         gameOver()
       } else {
-        wrong(coins.find(coin => coin.name === guess))
+        const coin = coins.find(coin => coin.name === guess)
+        console.log(coin)
+        wrong(coin)
         if (guessNumber >= 5) {
           gameOver()
         }
