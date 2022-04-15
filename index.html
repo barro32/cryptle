@@ -35,8 +35,8 @@
       </li>
     </ol>
     <div id="inputs">
-      <label for="coins">Guess the crypto project</label>
-      <input id="coins" name="coins" list="suggestions" autocomplete="off">
+      <input id="coins" name="coins" list="suggestions" autocomplete="off" placeholder="What's the coin?" required>
+      <span id="error" class="hidden">Invalid guess</span>
       <datalist id="suggestions"></datalist>
       <button type="submit">Guess</button>
     </div>
@@ -78,10 +78,13 @@
 
     function onSubmit(e) {
       e.preventDefault()
-      const guess = document.querySelector('#coins').value
-      const coin = coins.find(coin => coin.name === guess)
+      const error = document.querySelector('#error')
+      error.classList.add('hidden')
+      const guess = document.querySelector('#coins')
+      const coin = coins.find(coin => coin.name === guess.value)
+      guess.value = ""
       if (!coin) {
-        console.log('invalid guess')
+        error.classList.remove('hidden')
         return
       }
       guessNumber ++
