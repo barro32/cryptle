@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" href="icon.png"> -->
 
   <!-- <link rel="manifest" href="site.webmanifest"> -->
-  <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#333">
 </head>
 
 <body>
@@ -81,8 +81,8 @@
       const $error = document.querySelector('#error')
       $error.classList.add('hidden')
       const $guess = document.querySelector('#coins')
-      const guess = coins.find(coin => coin.name === guess.value)
-      guess.value = ""
+      const guess = coins.find(coin => coin.name === $guess.value)
+      $guess.value = ""
       if (!guess) {
         $error.classList.remove('hidden')
         return
