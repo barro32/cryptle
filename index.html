@@ -35,9 +35,12 @@
       </li>
     </ol>
     <div id="inputs">
-      <input id="coins" list="suggestions">
-      <datalist id="suggestions"></datalist>
-      <button type="submit">Guess</button>
+      <label for="coins">
+        <span class="hidden">Guess the crypto project</span>
+        <input id="coins" name="coins" list="suggestions">
+        <datalist id="suggestions"></datalist>
+        <button type="submit">Guess</button>
+      </label>
     </div>
     <div id="game-over" class="hidden">
       Game Over
@@ -66,8 +69,7 @@
 
       coins.forEach(coin => {
         const option = document.createElement('option')
-        option.value = coin.name
-        option.innerText = `${coin.market_cap_rank} ${coin.name}`
+        option.value = `${coin.market_cap_rank} ${coin.name}`
         suggestions.appendChild(option)
       })
 
