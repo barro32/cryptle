@@ -82,14 +82,13 @@
       $error.classList.add('hidden')
       const $guess = document.querySelector('#guess')
       const guess = coins.find(coin => coin.name === $guess.value)
-      console.log(guess, answer)
       $guess.value = ""
       if (!guess) {
         $error.classList.remove('hidden')
         return
       }
       guessNumber ++
-      if (guess === answer.name) {
+      if (guess.name === answer.name) {
         gameOver()
       } else {
         wrong(guess)
