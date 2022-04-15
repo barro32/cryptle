@@ -67,7 +67,7 @@
 
       coins.forEach(coin => {
         const option = document.createElement('option')
-        option.value = `${coin.market_cap_rank} ${coin.name}`
+        option.value = coin.name
         suggestions.appendChild(option)
       })
 
