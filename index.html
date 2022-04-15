@@ -35,7 +35,7 @@
       </li>
     </ol>
     <div id="inputs">
-      <input id="coins" name="coins" list="suggestions" autocomplete="off" placeholder="What's the coin?" required>
+      <input id="guess" name="guess" list="suggestions" autocomplete="off" placeholder="What's the coin?" required>
       <span id="error" class="hidden">Invalid guess</span>
       <datalist id="suggestions"></datalist>
       <button type="submit">Guess</button>
@@ -80,8 +80,9 @@
       e.preventDefault()
       const $error = document.querySelector('#error')
       $error.classList.add('hidden')
-      const $guess = document.querySelector('#coins')
+      const $guess = document.querySelector('#guess')
       const guess = coins.find(coin => coin.name === $guess.value)
+      console.log(guess, answer)
       $guess.value = ""
       if (!guess) {
         $error.classList.remove('hidden')
