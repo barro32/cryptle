@@ -47,8 +47,8 @@
 
   <script>
     let guessNumber = 0;
-    const suggestions = document.querySelector('#suggestions')
-    const guesses = document.querySelector('#guesses')
+    const $suggestions = document.querySelector('#suggestions')
+    const $guesses = document.querySelector('#guesses')
 
     async function getTopCoins() {
       const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
@@ -57,42 +57,41 @@
       updateSuggestions()
 
       answer = coins[Math.floor(Math.random() * coins.length)]
-      const img = document.querySelector('img')
-      img.src = answer.image
+      const $img = document.querySelector('img')
+      $img.src = answer.image
     }
     getTopCoins()
 
     function updateSuggestions() {
-      suggestions.innerHTML = ''
+      $suggestions.innerHTML = ''
 
       coins.forEach(coin => {
         const option = document.createElement('option')
         option.value = coin.name
-        suggestions.appendChild(option)
+        $suggestions.appendChild(option)
       })
 
     }
 
-    const app = document.querySelector('#app')
-    app.onsubmit = onSubmit
+    const $app = document.querySelector('#app')
+    $app.onsubmit = onSubmit
 
     function onSubmit(e) {
       e.preventDefault()
-      const error = document.querySelector('#error')
-      error.classList.add('hidden')
-      const guess = document.querySelector('#coins')
-      const coin = coins.find(coin => coin.name === guess.value)
+      const $error = document.querySelector('#error')
+      $error.classList.add('hidden')
+      const $guess = document.querySelector('#coins')
+      const guess = coins.find(coin => coin.name === guess.value)
       guess.value = ""
-      if (!coin) {
-        error.classList.remove('hidden')
+      if (!guess) {
+        $error.classList.remove('hidden')
         return
       }
       guessNumber ++
       if (guess === answer.name) {
         gameOver()
       } else {
-        console.log(coin)
-        wrong(coin)
+        wrong(guess)
         if (guessNumber >= 5) {
           gameOver()
         }
@@ -112,19 +111,19 @@
       const li = document.createElement('li')
       li.innerHTML = `<span>${guess.market_cap_rank}</span><span>${guess.name}</span><span>${guess.symbol.toUpperCase()}</span><span>$${guess.current_price}</span><span>$${guess.market_cap.toLocaleString()}</span><span>${arrow}</span>`
       li.className = 'wrong'
-      guesses.appendChild(li)
+      $guesses.appendChild(li)
     }
 
     function gameOver() {
       const li = document.createElement('li')
       li.innerHTML = `<span>${answer.market_cap_rank}</span><span>${answer.name}</span><span>${answer.symbol.toUpperCase()}</span><span>$${answer.current_price}</span><span>$${answer.market_cap.toLocaleString()}</span><span></span>`
       li.className = 'correct'
-      guesses.appendChild(li)
+      $guesses.appendChild(li)
 
-      const inputs = document.querySelector('#inputs')
-      inputs.classList.add('hidden')
-      const gameOverMsg = document.querySelector('#game-over')
-      gameOverMsg.classList.remove('hidden')
+      const $inputs = document.querySelector('#inputs')
+      $inputs.classList.add('hidden')
+      const $gameOverMsg = document.querySelector('#game-over')
+      $gameOverMsg.classList.remove('hidden')
     }
 
 
