@@ -35,12 +35,10 @@
       </li>
     </ol>
     <div id="inputs">
-      <label for="coins">
-        <span class="hidden">Guess the crypto project</span>
-        <input id="coins" name="coins" list="suggestions">
-        <datalist id="suggestions"></datalist>
-        <button type="submit">Guess</button>
-      </label>
+      <label for="coins">Guess the crypto project</label>
+      <input id="coins" name="coins" list="suggestions" autocomplete="off">
+      <datalist id="suggestions"></datalist>
+      <button type="submit">Guess</button>
     </div>
     <div id="game-over" class="hidden">
       Game Over
