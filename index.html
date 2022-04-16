@@ -25,7 +25,7 @@
   <form id="app">
     <img src="#" alt=""/>
     <ol id="guesses">
-      <li>
+      <li id="key" class="hidden">
         <span>#</span>
         <span>Name</span>
         <span>Symbol</span>
@@ -87,6 +87,7 @@
         $error.classList.remove('hidden')
         return
       }
+      if (guessNumber === 0) document.querySelector('#key').classList.remove('hidden')
       guessNumber ++
       if (guess.name === answer.name) {
         gameOver()
@@ -142,6 +143,10 @@
       margin: auto;
       font-family: sans-serif;
       font-size: 1rem;
+    }
+    img {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHJva2U9InB1cnBsZSIgZmlsbD0ibm9uZSI+PHN0eWxlPkBrZXlmcmFtZXMgZGFzaHt0b3tzdHJva2UtZGFzaG9mZnNldDotMzAwfX08L3N0eWxlPjxnIHN0cm9rZT0iIzgyZSIgc3Ryb2tlLWRhc2hhcnJheT0iNTAiIHN0eWxlPSJhbmltYXRpb246ZGFzaCAzcyBpbmZpbml0ZSBsaW5lYXIiPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQ1Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDQiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MyIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQyIi8+PC9nPjxnIHN0cm9rZT0iIzdkZiIgc3Ryb2tlLWRhc2hhcnJheT0iNTAiIHN0eWxlPSJhbmltYXRpb246ZGFzaCA0cyBpbmZpbml0ZSBsaW5lYXIiPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQ1Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDQiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MyIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQyIi8+PC9nPjwvc3ZnPg==);
+
     }
     input, button {
       font-size: 1rem;
