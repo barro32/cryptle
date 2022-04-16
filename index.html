@@ -23,7 +23,7 @@
 <body>
 
   <form id="app">
-    <img src="#" alt="" onload="this.onload = null; this.style.backgroundImage = ''" />
+    <img src="#" alt="" />
     <ol id="guesses">
       <li id="key" class="hidden">
         <span>#</span>
@@ -58,6 +58,7 @@
 
       answer = coins[Math.floor(Math.random() * coins.length)]
       const $img = document.querySelector('img')
+      $img.addEventListener('load', () => $img.style.backgroundImage = "")
       $img.src = answer.image
     }
     getTopCoins()
