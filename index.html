@@ -118,7 +118,7 @@
 
     function formatMarketCap(n) {
       console.log(n)
-      return Number(n).toLocaleString(undefined, {maximumFractionDigits: 3, minimumFractionDigits: 3}) / 1000000000
+      return (n / 1000000000).toLocaleString(undefined, {maximumFractionDigits: 3, minimumFractionDigits: 3})
     }
 
     function gameOver() {
