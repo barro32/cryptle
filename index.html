@@ -31,7 +31,7 @@
         <span>Symbol</span>
         <span>USD</span>
         <span>Market Cap.</span>
-        <span>⬆️/⬇️</span>
+        <span>🌡️</span>
       </li>
     </ol>
     <div id="inputs">
@@ -122,7 +122,7 @@
 
     function gameOver() {
       const li = document.createElement('li')
-      li.innerHTML = `<span>${answer.market_cap_rank}</span><span>${answer.name}</span><span>${answer.symbol.toUpperCase()}</span><span>$${answer.current_price}</span><span>$${formatMarketCap(answer.market_cap)} b</span><span></span>`
+      li.innerHTML = `<span>${answer.market_cap_rank}</span><span>${answer.name}</span><span>${answer.symbol.toUpperCase()}</span><span>$${answer.current_price}</span><span>$${formatMarketCap(answer.market_cap)} b</span><span>🎆</span>`
       li.className = 'correct'
       $guesses.appendChild(li)
 
@@ -172,9 +172,9 @@
       padding: 0;
     }
     #guesses li {
-      display: flex;
+      display: grid;
+      grid-template-columns: 2rem repeat(4, 1fr) 2rem;
       gap: 1rem;
-      justify-content: space-between;
       padding: 0.5rem;
       border: 0.2rem solid #eee;
       border-radius: 0.2rem;
