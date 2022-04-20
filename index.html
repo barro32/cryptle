@@ -58,7 +58,7 @@
 
       answer = coins[Math.floor(Math.random() * coins.length)]
       const $img = document.querySelector('img')
-      $img.onload = () => $img.style.backgroundImage = ""
+      $img.onload = () => $img.style.backgroundImage = "url()"
       $img.src = answer.image
     }
     getTopCoins()
@@ -111,19 +111,18 @@
       }
       updateSuggestions()
       const li = document.createElement('li')
-      li.innerHTML = `<span>${guess.market_cap_rank}</span><span>${guess.name}</span><span>${guess.symbol.toUpperCase()}</span><span>$${guess.current_price}</span><span>$${formatMarketCap(guess.market_cap)}b</span><span>${arrow}</span>`
+      li.innerHTML = `<span>${guess.market_cap_rank}</span><span>${guess.name}</span><span>${guess.symbol.toUpperCase()}</span><span>$${guess.current_price}</span><span>$${formatMarketCap(guess.market_cap)} b</span><span>${arrow}</span>`
       li.className = 'wrong'
       $guesses.appendChild(li)
     }
 
     function formatMarketCap(n) {
-      console.log(n)
       return (n / 1000000000).toLocaleString(undefined, {maximumFractionDigits: 3, minimumFractionDigits: 3})
     }
 
     function gameOver() {
       const li = document.createElement('li')
-      li.innerHTML = `<span>${answer.market_cap_rank}</span><span>${answer.name}</span><span>${answer.symbol.toUpperCase()}</span><span>$${answer.current_price}</span><span>$${formatMarketCap(answer.market_cap)}b</span><span></span>`
+      li.innerHTML = `<span>${answer.market_cap_rank}</span><span>${answer.name}</span><span>${answer.symbol.toUpperCase()}</span><span>$${answer.current_price}</span><span>$${formatMarketCap(answer.market_cap)} b</span><span></span>`
       li.className = 'correct'
       $guesses.appendChild(li)
 
